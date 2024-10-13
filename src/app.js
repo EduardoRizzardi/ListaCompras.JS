@@ -1,29 +1,25 @@
-import { saveProduct, loadProducts, removeProduct } from './storage.js';
-import { addProductToUI, clearInput } from './ui.js';
+import { addItem, loadItems } from './ui.js';
+import { saveToStorage, loadFromStorage } from './storage.js';
 
-// Carrega os produtos salvos ao carregar a página
-document.addEventListener('DOMContentLoaded', loadProducts);
+const addItemBtn = document.getElementById('add-item-btn');
+const itemInput = document.getElementById('item-input');
 
-document.getElementById('add-button').addEventListener('click', () => {
-    const input = document.getElementById('product-input');
-    const productName = input.value.trim();
 
-    if (productName === '') {
-        alert('Por favor, insira um produto válido.');
+window.addEventListener('DOMContentLoaded', () => {
+    const savedItems = loadFromStorage();
+    loadItems(savedItems);
+});
+
+
+addItemBtn.addEventListener('click', () => {
+    const itemName = itemInput.value.trim();
+
+    if (itemName === '') {
+        document.getElementById('message').textContent = 'Por favor, insira um nome válido para o item.';
         return;
     }
 
-    // Adiciona o produto na interface do usuário
-    addProductToUI(productName, removeProductFromStorage);
-    
-    // Salva o produto no localStorage
-    saveProduct(productName);
-
-    // Limpa o campo de entrada
-    clearInput(input);
+    addItem(itemName);
+    saveToStorage(itemName);
+    itemInput.value = ''; 
 });
-
-// Função para remover produto do storage ao clicar no botão de remoção
-function removeProductFromStorage(productName) {
-    removeProduct(productName);
-}

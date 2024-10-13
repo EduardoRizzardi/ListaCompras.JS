@@ -1,21 +1,33 @@
-// Função para adicionar o produto na interface do usuário
-export function addProductToUI(productName, removeProductCallback) {
-    const productList = document.getElementById('product-list');
-    const li = document.createElement('li');
-    li.textContent = productName;
+import { removeFromStorage } from './storage.js';
 
-    const removeButton = document.createElement('button');
-    removeButton.textContent = 'Remover';
-    removeButton.onclick = () => {
-        li.remove();
-        removeProductCallback(productName); // Remove do localStorage
-    };
 
-    li.appendChild(removeButton);
-    productList.appendChild(li);
+export function loadItems(items) {
+    const itemList = document.getElementById('items-list');
+    items.forEach(item => {
+        const listItem = createListItem(item);
+        itemList.appendChild(listItem);
+    });
 }
 
-// Função para limpar o campo de entrada após adicionar o produto
-export function clearInput(input) {
-    input.value = '';
+
+export function addItem(itemName) {
+    const itemList = document.getElementById('items-list');
+    const listItem = createListItem(itemName);
+    itemList.appendChild(listItem);
+}
+
+
+function createListItem(itemName) {
+    const listItem = document.createElement('li');
+    listItem.textContent = itemName;
+
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = 'Remover';
+    removeBtn.addEventListener('click', () => {
+        listItem.remove();
+        removeFromStorage(itemName); 
+    });
+
+    listItem.appendChild(removeBtn);
+    return listItem;
 }

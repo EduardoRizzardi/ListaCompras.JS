@@ -1,25 +1,18 @@
-import { addProductToUI} from './ui.js';
-// Função para salvar o produto no localStorage
-export function saveProduct(productName) {
-    let products = getProducts();
-    products.push(productName);
-    localStorage.setItem('products', JSON.stringify(products));
+
+export function loadFromStorage() {
+    return JSON.parse(localStorage.getItem('shoppingItems')) || [];
 }
 
-// Função para carregar produtos salvos e mostrá-los na UI
-export function loadProducts() {
-    let products = getProducts();
-    products.forEach(product => addProductToUI(product, removeProduct));
+
+export function saveToStorage(itemName) {
+    const items = loadFromStorage();
+    items.push(itemName);
+    localStorage.setItem('shoppingItems', JSON.stringify(items));
 }
 
-// Função para remover um produto do localStorage
-export function removeProduct(productName) {
-    let products = getProducts();
-    products = products.filter(product => product !== productName);
-    localStorage.setItem('products', JSON.stringify(products));
-}
 
-// Função para obter os produtos do localStorage
-function getProducts() {
-    return JSON.parse(localStorage.getItem('products')) || [];
+export function removeFromStorage(itemName) {
+    let items = loadFromStorage();
+    items = items.filter(item => item !== itemName);
+    localStorage.setItem('shoppingItems', JSON.stringify(items));
 }

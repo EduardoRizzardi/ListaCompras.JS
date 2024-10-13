@@ -1,34 +1,23 @@
-LISTA DE COMPRAS
+# Lista de Compras Modular
 
-Este projeto é uma aplicação simples de Lista de Compras que permite adicionar e remover itens, salvando-os no LocalStorage do navegador. Os itens adicionados permanecem salvos mesmo após o recarregamento da página.
+Esta é uma aplicação simples de lista de compras em JavaScript, agora modularizada para melhor organização. A aplicação permite adicionar e remover itens da lista e salvar os dados no LocalStorage.
 
+## Funcionalidades
 
-FUNCIONALIDADES
+- Adicionar itens à lista.
+- Remover itens da lista.
+- Salvar e carregar itens usando LocalStorage.
 
-Adicionar itens à lista.
-Remover itens da lista.
-Salvar a lista no LocalStorage (itens permanecem após recarregar a página).
-Carregar a lista salva automaticamente ao abrir a página.
+## Como funciona
 
+1. **Adicionar um item**: Digite o nome do item no campo e clique em "Adicionar". O item será exibido na lista e salvo no LocalStorage.
+2. **Remover um item**: Ao clicar em "Remover", o item será excluído da lista e do LocalStorage.
+3. **Persistência de dados**: Os itens adicionados são carregados automaticamente ao abrir a aplicação.
 
-COMO USAR
+## Arquivos e Módulos
 
-Abra o arquivo index.html no navegador.
-Digite o nome de um produto no campo de entrada.
-Clique no botão "Adicionar" para inserir o item na lista.
-Para remover um item, clique no botão "Remover" ao lado do produto.
-A lista será salva automaticamente e carregada ao recarregar a página.
-
-ESTRUTURA DO PROJETO
-
-index.html: Estrutura da página (HTML).
-styles.css: Estilos da aplicação (CSS).
-app.js: Lógica principal para adicionar/remover itens (JavaScript).
-storage.js: Lida com o salvamento e carregamento dos dados no LocalStorage.
-ui.js: Gerencia a interface do usuário.
-
-COMO FUNCIONA
-
-Adicionar itens: Quando você insere um item e clica em "Adicionar", ele é salvo no LocalStorage e exibido na página.
-Remover itens: Ao clicar no botão "Remover", o item é removido da página e do LocalStorage.
-Carregamento: Quando a página é recarregada, os itens salvos são carregados automaticamente do LocalStorage.
+- `index.html`: Estrutura HTML.
+- `styles.css`: Estilos da página.
+- `app.js`: Arquivo principal que conecta os módulos.
+- `ui.js`: Lida com a interface (adicionar e remover itens da lista).
+- `storage.js`: Lida com o LocalStorage (salvar, carregar, remover itens).
